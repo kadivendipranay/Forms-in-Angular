@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Registration } from 'src/registration';
 
 
@@ -10,13 +11,22 @@ import { Registration } from 'src/registration';
 })
 export class AppComponent  {
   
-  registration:Registration=new Registration();
-
-  onSubmit():void{
-    console.log(this.registration.name)
-    console.log(this.registration.city)
-    console.log(this.registration.email)
-    console.log(this.registration.mobile)
+  myForm!: FormGroup;
+  formClick:boolean=false;
+  constructor(private fb:FormBuilder){
+       this.myForm=this.fb.group(
+        {
+          'firstName':['',Validators.required],
+          'email':['',Validators.required]
+        }
+       )
   }
-
+onSubmit(){
+this.formClick=true;
+  console.log(this.myForm.value.firstName)
+  console.log(this.myForm.value.email)
 }
+  
+}
+
+

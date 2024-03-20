@@ -1,9 +1,18 @@
 <h2>App Component</h2>
 <pre>
-<form>
 
-</form>
-<form[formGroup]="myForm">
-  
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="myForm.get('firstName')?.hasError('required')&&formClick">
+       Name is required
+  </div>
+  <div *ngIf="myForm.get('email')?.hasError('required')&&formClick">
+    Email is required
+</div>
+  First Name:<input type="text" formControlName="firstName"/>
+  Email:<input type="email" formControlName="email"/>
+  <input type="submit">
+         
+
 </form>
 </pre>
